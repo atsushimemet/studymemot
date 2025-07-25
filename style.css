@@ -531,6 +531,7 @@ section {
     gap: 2rem;
     max-width: 1200px;
     width: 100%;
+    align-items: stretch;
 }
 
 .graduation-item {
@@ -541,7 +542,8 @@ section {
     transition: all 0.3s ease;
     border-left: 4px solid #27ae60;
     text-align: center;
-    height: 120px;
+    min-height: 120px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -686,7 +688,8 @@ section {
     }
 
     .graduation-item {
-        height: 120px;
+        min-height: 120px;
+        height: 100%;
         padding: 2rem 1.5rem;
     }
 
