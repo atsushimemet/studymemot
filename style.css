@@ -347,6 +347,71 @@ section {
     color: #2c3e50;
 }
 
+/* Media Section */
+.media {
+    background: #f8f9fa;
+}
+
+.media-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+.media-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border-left: 4px solid #9b59b6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.media-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: #f3e5f5;
+}
+
+.media-item i {
+    font-size: 2rem;
+    color: #9b59b6;
+    margin-right: 1rem;
+    min-width: 40px;
+}
+
+.media-item h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.media-item p {
+    color: #666;
+    margin: 0;
+}
+
+.media-item a {
+    color: #9b59b6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.media-item a:hover {
+    color: #8e44ad;
+    text-decoration: underline;
+}
+
 /* Contact Section */
 .contact {
     background: white;
@@ -458,6 +523,10 @@ section {
     }
 
     .contact-info {
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+
         grid-template-columns: 1fr;
     }
 
