@@ -532,6 +532,7 @@ section {
     max-width: 1200px;
     width: 100%;
     align-items: stretch;
+    grid-auto-rows: 1fr;
 }
 
 .graduation-item {
@@ -547,6 +548,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .graduation-item:hover {
@@ -560,6 +562,9 @@ section {
     margin: 0;
     font-size: 1.3rem;
     font-weight: 600;
+    line-height: 1.4;
+    word-wrap: break-word;
+    hyphens: auto;
 }.contact {
     background: white;
 }
