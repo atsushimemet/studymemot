@@ -73,7 +73,7 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
         }
-    });
+    const animatedElements = document.querySelectorAll(".skill-category, .contact-item, .about-list li, .app-item");    });
 }, observerOptions);
 
 // Observe elements for animation
