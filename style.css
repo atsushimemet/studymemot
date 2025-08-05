@@ -439,6 +439,26 @@ section {
     background: #34495e;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.monitor-link {
+    margin-top: 1rem;
+}
+
+.monitor-link .btn {
+    background: #e67e22;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.monitor-link .btn:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }.media {
     background: #f8f9fa;
 }
