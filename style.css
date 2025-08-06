@@ -187,15 +187,18 @@ body {
 }
 
 .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
+    background: #ecf0f1;
+    color: #2c3e50;
+    border: 2px solid #bdc3c7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-    background: white;
-    color: #2c3e50;
+    background: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Sections */
@@ -726,12 +729,8 @@ section {
         gap: 3rem;
     }
     
-    .github-link {
-        margin-top: 2rem;
-    }
-    
     .media-link {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 }
 
@@ -793,10 +792,6 @@ section {
     
     .media-content {
         gap: 1.5rem;
-    }
-    
-    .github-link {
-        margin-top: 0.5rem;
     }
     
     .media-link {
