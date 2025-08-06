@@ -467,7 +467,7 @@ section {
 }
 
 .media-link .btn {
-    background: #3498db;
+    background: #9b59b6;
     color: white;
     padding: 0.8rem 2rem;
     border-radius: 25px;
@@ -477,19 +477,19 @@ section {
 }
 
 .media-link .btn:hover {
-    background: #2980b9;
+    background: #8e44ad;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
 }
-
 .media {
     background: #f8f9fa;
 }
 
 .media-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
 }
 
 .media-grid {
@@ -544,6 +544,46 @@ section {
 .media-item a:hover {
     color: #8e44ad;
     text-decoration: underline;
+}
+
+.github-link {
+    margin-top: 1rem;
+}
+
+.github-link .btn {
+    background: #2c3e50;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.github-link .btn:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.media-link {
+    margin-top: 1rem;
+}
+
+.media-link .btn {
+    background: #9b59b6;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.media-link .btn:hover {
+    background: #8e44ad;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
 }
 
 /* Contact Section */
@@ -681,6 +721,20 @@ section {
 }
 
 /* Responsive Design */
+@media (min-width: 769px) {
+    .media-content {
+        gap: 3rem;
+    }
+    
+    .github-link {
+        margin-top: 2rem;
+    }
+    
+    .media-link {
+        margin-top: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -735,6 +789,18 @@ section {
     
     .media-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .media-content {
+        gap: 1.5rem;
+    }
+    
+    .github-link {
+        margin-top: 0.5rem;
+    }
+    
+    .media-link {
+        margin-top: 0.5rem;
     }
     
     .app-grid {
