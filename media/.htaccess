@@ -1,5 +1,5 @@
 # DirectoryIndexを設定してindex.htmlを優先
-DirectoryIndex index.html
+DirectoryIndex index.html redirect.html
 
 # ディレクトリ一覧表示を無効化
 Options -Indexes
