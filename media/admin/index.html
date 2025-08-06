@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事投稿 - Admin - Portfolio</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .admin-form {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 200px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .preview-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .preview-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .preview-content {
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../../#home">Portfolio</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../../#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#app" class="nav-link">App</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#media" class="nav-link">Media</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#graduation" class="nav-link">Graduation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section style="margin-top: 100px; min-height: 70vh;">
+        <div class="container">
+            <h2 class="section-title">記事投稿</h2>
+            
+            <div class="admin-form">
+                <div id="success-message" class="success-message">
+                    <i class="fas fa-check-circle"></i> 記事が正常に投稿されました！
+                </div>
+                
+                <div id="error-message" class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i> <span id="error-text"></span>
+                </div>
+                
+                <form id="article-form">
+                    <div class="form-group">
+                        <label for="title">タイトル<span style="color: #e74c3c;">*</span></label>
+                        <input type="text" id="title" name="title" required placeholder="記事のタイトルを入力してください">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="media">公開メディア<span style="color: #e74c3c;">*</span></label>
+                        <select id="media" name="media" required>
+                            <option value="">メディアを選択してください</option>
+                            <option value="note">note</option>
+                            <option value="Zenn">Zenn</option>
+                            <option value="X (Twitter)">X (Twitter)</option>
+                            <option value="Qiita">Qiita</option>
+                            <option value="はてなブログ">はてなブログ</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content">本文<span style="color: #e74c3c;">*</span></label>
+                        <textarea id="content" name="content" required placeholder="記事の内容を入力してください"></textarea>
+                    </div>
+                    
+                    <div class="preview-section" id="preview-section" style="display: none;">
+                        <div class="preview-title">プレビュー</div>
+                        <div id="preview-content" class="preview-content"></div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="preview-btn" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> プレビュー
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> 投稿
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> リセット
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="back-link">
+                <a href="../" class="btn btn-secondary">記事一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ハンバーガーメニューの処理
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // フォーム要素の取得
+        const form = document.getElementById('article-form');
+        const titleInput = document.getElementById('title');
+        const mediaSelect = document.getElementById('media');
+        const contentTextarea = document.getElementById('content');
+        const previewBtn = document.getElementById('preview-btn');
+        const previewSection = document.getElementById('preview-section');
+        const previewContent = document.getElementById('preview-content');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+
+        // プレビュー機能
+        previewBtn.addEventListener('click', () => {
+            const title = titleInput.value.trim();
+            const content = contentTextarea.value.trim();
+            const media = mediaSelect.value;
+            
+            if (!title || !content || !media) {
+                showError('プレビューを表示するには、すべてのフィールドを入力してください。');
+                return;
+            }
+            
+            previewContent.innerHTML = `
+                <h3 style="color: #2c3e50; margin-bottom: 10px;">${escapeHtml(title)}</h3>
+                <p style="color: #7f8c8d; margin-bottom: 15px; font-size: 0.9rem;">
+                    <i class="fas fa-tag"></i> ${escapeHtml(media)}
+                </p>
+                <div style="line-height: 1.8;">${escapeHtml(content).replace(/\n/g, '<br>')}</div>
+            `;
+            
+            previewSection.style.display = 'block';
+            previewSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // フォーム送信処理
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = titleInput.value.trim();
+            const content = contentTextarea.value.trim();
+            const media = mediaSelect.value;
+            
+            // バリデーション
+            if (!title || !content || !media) {
+                showError('すべてのフィールドを入力してください。');
+                return;
+            }
+            
+            if (title.length > 100) {
+                showError('タイトルは100文字以内で入力してください。');
+                return;
+            }
+            
+            if (content.length > 5000) {
+                showError('本文は5000文字以内で入力してください。');
+                return;
+            }
+            
+            // 記事データの作成
+            const article = {
+                id: Date.now().toString(),
+                title: title,
+                content: content,
+                media: media,
+                date: new Date().toISOString()
+            };
+            
+            // LocalStorageに保存
+            try {
+                const existingArticles = JSON.parse(localStorage.getItem('mediaArticles')) || [];
+                existingArticles.push(article);
+                localStorage.setItem('mediaArticles', JSON.stringify(existingArticles));
+                
+                showSuccess();
+                form.reset();
+                previewSection.style.display = 'none';
+            } catch (error) {
+                showError('記事の保存に失敗しました。もう一度お試しください。');
+            }
+        });
+
+        // フォームリセット時の処理
+        form.addEventListener('reset', () => {
+            previewSection.style.display = 'none';
+            hideMessages();
+        });
+
+        // 成功メッセージの表示
+        function showSuccess() {
+            hideMessages();
+            successMessage.style.display = 'block';
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // エラーメッセージの表示
+        function showError(message) {
+            hideMessages();
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+            errorMessage.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // メッセージの非表示
+        function hideMessages() {
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+        }
+
+        // HTMLエスケープ
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
