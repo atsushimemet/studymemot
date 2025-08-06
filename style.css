@@ -439,14 +439,17 @@ section {
     background: #34495e;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}.media {
+}
+
+.media {
     background: #f8f9fa;
 }
 
 .media-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
 }
 
 .media-grid {
@@ -501,6 +504,26 @@ section {
 .media-item a:hover {
     color: #8e44ad;
     text-decoration: underline;
+}
+
+.github-link {
+    margin-top: 1rem;
+}
+
+.github-link .btn {
+    background: #2c3e50;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.github-link .btn:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Contact Section */
@@ -638,6 +661,16 @@ section {
 }
 
 /* Responsive Design */
+@media (min-width: 769px) {
+    .media-content {
+        gap: 3rem;
+    }
+    
+    .github-link {
+        margin-top: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -692,6 +725,14 @@ section {
     
     .media-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .media-content {
+        gap: 1.5rem;
+    }
+    
+    .github-link {
+        margin-top: 0.5rem;
     }
     
     .app-grid {
