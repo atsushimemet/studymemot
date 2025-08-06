@@ -726,12 +726,8 @@ section {
         gap: 3rem;
     }
     
-    .github-link {
-        margin-top: 2rem;
-    }
-    
     .media-link {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 }
 
@@ -793,10 +789,6 @@ section {
     
     .media-content {
         gap: 1.5rem;
-    }
-    
-    .github-link {
-        margin-top: 0.5rem;
     }
     
     .media-link {
