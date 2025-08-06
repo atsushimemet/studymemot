@@ -230,6 +230,9 @@
         // 記事をクリップボードにコピー
         function copyArticle(index) {
             const articles = JSON.parse(localStorage.getItem('mediaArticles')) || [];
+            // 表示と同じ順序（日付降順）でソート
+            articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
             if (index >= 0 && index < articles.length) {
                 const article = articles[index];
                 const textToCopy = `${article.title}\n\n${article.content}`;
