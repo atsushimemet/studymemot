@@ -71,6 +71,42 @@
             text-align: center;
             margin: 30px 0;
         }
+        
+        .copy-icon {
+            margin-left: 10px;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .copy-icon:hover {
+            color: #3498db;
+        }
+        
+        .copy-icon.copied {
+            color: #27ae60;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .copy-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -159,12 +195,15 @@
             // 日付降順でソート
             articles.sort((a, b) => new Date(b.date) - new Date(a.date));
             
-            container.innerHTML = articles.map(article => `
+            container.innerHTML = articles.map((article, index) => `
                 <div class="media-article">
                     <h3 class="article-title">${escapeHtml(article.title)}</h3>
                     <div class="article-meta">
                         <span><i class="fas fa-calendar"></i> ${formatDate(article.date)}</span>
-                        <span class="article-media"><i class="fas fa-tag"></i> ${escapeHtml(article.media)}</span>
+                        <span class="article-media">
+                            <i class="fas fa-tag"></i> ${escapeHtml(article.media)}
+                            <i class="fas fa-copy copy-icon" onclick="copyArticle(${index})" title="記事をコピー"></i>
+                        </span>
                     </div>
                     <div class="article-content">${escapeHtml(article.content).replace(/\n/g, '<br>')}</div>
                 </div>
@@ -186,6 +225,88 @@
                 month: 'long',
                 day: 'numeric'
             });
+        }
+        
+        // 記事をクリップボードにコピー
+        function copyArticle(index) {
+            const articles = JSON.parse(localStorage.getItem('mediaArticles')) || [];
+            if (index >= 0 && index < articles.length) {
+                const article = articles[index];
+                const textToCopy = `${article.title}\n\n${article.content}`;
+                
+                // クリップボードにコピー
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showCopyNotification();
+                    // コピーアイコンを一時的に変更
+                    const copyIcon = document.querySelectorAll('.copy-icon')[index];
+                    if (copyIcon) {
+                        copyIcon.classList.add('copied');
+                        copyIcon.classList.remove('fa-copy');
+                        copyIcon.classList.add('fa-check');
+                        setTimeout(() => {
+                            copyIcon.classList.remove('copied');
+                            copyIcon.classList.remove('fa-check');
+                            copyIcon.classList.add('fa-copy');
+                        }, 2000);
+                    }
+                }).catch(err => {
+                    console.error('コピーに失敗しました:', err);
+                    // フォールバック: 古いブラウザ対応
+                    fallbackCopyToClipboard(textToCopy);
+                });
+            }
+        }
+        
+        // コピー通知を表示
+        function showCopyNotification() {
+            // 既存の通知を削除
+            const existingNotification = document.querySelector('.copy-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // 新しい通知を作成
+            const notification = document.createElement('div');
+            notification.className = 'copy-notification';
+            notification.textContent = '記事がクリップボードにコピーされました！';
+            document.body.appendChild(notification);
+            
+            // アニメーション表示
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // 3秒後に削除
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // フォールバック: 古いブラウザでのコピー機能
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyNotification();
+            } catch (err) {
+                console.error('フォールバックコピーに失敗しました:', err);
+                alert('コピー機能がサポートされていません。手動で選択してコピーしてください。');
+            }
+            
+            document.body.removeChild(textArea);
         }
         
         // ページ読み込み時に記事を表示
