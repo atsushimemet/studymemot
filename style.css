@@ -380,7 +380,7 @@ section {
 
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
     max-width: 1000px;
     width: 100%;
@@ -799,12 +799,12 @@ section {
     }
     
     .app-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1.5rem;
     }
     
     .resources-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1.5rem;
     }
     
@@ -863,8 +863,13 @@ section {
 }
 
 @media (max-width: 992px) {
+    .app-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+    
     .resources-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1.5rem;
     }
     
@@ -990,7 +995,7 @@ html {
 
 .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
     max-width: 800px;
     margin: 0 auto;
