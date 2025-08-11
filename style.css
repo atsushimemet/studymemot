@@ -812,10 +812,33 @@ section {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+        align-items: center;
+        padding: 1.5rem;
     }
     
     .resource-item i {
         margin-top: 0;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .resource-content {
+        width: 100%;
+    }
+    
+    .resource-content h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .resource-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-resource {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
     }
     
     .graduation-list {
@@ -839,6 +862,30 @@ section {
     }
 }
 
+@media (max-width: 992px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .resource-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        align-items: center;
+        padding: 1.8rem;
+    }
+    
+    .resource-item i {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .resource-content h4 {
+        font-size: 1.15rem;
+    }
+}
+
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 2rem;
@@ -850,6 +897,35 @@ section {
 
     .skill-items {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .resources-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .resource-item {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .resource-item i {
+        font-size: 2rem;
+    }
+    
+    .resource-content h4 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .resource-content p {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .btn-resource {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
     }
 }
 
